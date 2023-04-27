@@ -95,8 +95,8 @@ def download_driver():
 
 if __name__ == '__main__':
 
-    a = open('test.txt', 'r')
-    data = a.read()
+    with open('test.txt', 'r') as a:
+        data = a.read()
     data = re.findall('“(.*)”', data)
     wifi_name = data[0]
     url = data[1]
