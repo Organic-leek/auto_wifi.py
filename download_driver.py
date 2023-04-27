@@ -26,7 +26,6 @@ try:
             unit='B',
             unit_scale=True,
             ncols=100,
-            # unit_divisor=chunk_size,  # 每一进度的数据大小 感觉可以没有
             colour='#00ff00',  # 进度条颜色 仅编辑器内有效
     )  as bar:
         for code in download_zip.iter_content(1024):
