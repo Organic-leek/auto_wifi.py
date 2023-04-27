@@ -1,10 +1,8 @@
-#°æ±¾
-EGDE: 111.0.1661.54 (64Î»)
-driver£º111.0.1661.54
+
 
 wi-fi_name = ¡°NCU-2.4G¡±
 web_url = ¡°http://222.204.3.154/¡±  # 222.204.3.(154|221)
-username = ¡°406100220060¡±
-password = ¡°pjc243910¡±
+username = ¡°******¡±
+password = ¡°*******¡±
 waiting_time=¡°1¡±
 edge_path = ¡°C:\Program Files (x86)\Microsoft\Edge\Application¡±
