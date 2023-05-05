@@ -91,6 +91,32 @@ class auto_wifi:
 def download_driver():
     pass
 
+def login(times=2):
+    try:
+        driver = webdriver.Edge()
+        driver.get(url)
+        time.sleep(int(data[4]))
+        html = driver.page_source
+        if re.search('登录',html):
+            if re.search('domain-list',html):
+                s = driver.find_element(By.ID, 'domain')
+                Select(s).select_by_value('@cmcc')
+            username=driver.find_element(By.ID, 'username')
+            username.send_keys(data[2])
+            password = driver.find_element(By.ID, 'password')
+            password.send_keys(data[3])
+            time.sleep(1)
+            if re.search('btn btn-block btn-primary',html):
+                driver.find_element(By.ID,'login').click()
+            if re.search('id="login-account"', html):
+                driver.find_element(By.ID,'login-account').click()
+            time.sleep(5)
+            driver.close()
+    except Exception as e:
+        print(e)
+        if times>0:
+            time.sleep(6)
+            login(times-1)
 
 
 if __name__ == '__main__':
@@ -103,23 +129,4 @@ if __name__ == '__main__':
     version = next(os.walk(data[5]))[1][0]
 
     auto_wifi(wifi_name).main()
-
-    driver = webdriver.Edge()
-    driver.get(url)
-    time.sleep(int(data[4]))
-    html = driver.page_source
-    if re.search('登录',html):
-        if re.search('domain-list',html):
-            s = driver.find_element(By.ID, 'domain')
-            Select(s).select_by_value('@cmcc')
-        username=driver.find_element(By.ID, 'username')
-        username.send_keys(data[2])
-        password = driver.find_element(By.ID, 'password')
-        password.send_keys(data[3])
-        time.sleep(1)
-        if re.search('btn btn-block btn-primary',html):
-            driver.find_element(By.ID,'login').click()
-        if re.search('id="login-account"', html):
-            driver.find_element(By.ID,'login-account').click()
-    time.sleep(6)
-    driver.close()
+    login()
